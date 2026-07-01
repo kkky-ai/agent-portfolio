@@ -9,9 +9,13 @@
 | 女性谣言粉碎机 | 面向女性议题的信息判断与谣言拆解 Agent | https://p6z55c4yv.zhaomi.cn/ |
 | 磕学家养成手册 | 偏内容陪伴和互动生成的 Agent | https://app-c646jovqbgu9.appmiaoda.com/home |
 | Hackverse | 面向黑客松/创意生成场景的 Agent | https://hackathon-03.onrender.com/generate |
-| 飞书日报自动化 Agent | 根据满意度、老板要求和 done 自动生成日报的办公自动化 Agent | `daily-report-demo/` |
+| 飞书日报自动化 Agent | 根据满意度、老板要求和 done 自动生成日报的办公自动化 Agent | https://kkky-ai.github.io/agent-portfolio/daily-report-demo/ |
 
 ## 飞书日报自动化 Agent
+
+在线 Demo：
+
+https://kkky-ai.github.io/agent-portfolio/daily-report-demo/
 
 公开仓库中只保留安全 Demo 和脱敏说明，不包含真实飞书 token、webhook、公司文档链接、个人账号 ID 等敏感配置。
 
