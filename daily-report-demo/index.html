@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>飞书日报自动化 Agent Demo</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --ink: #172033;
+      --muted: #657086;
+      --line: #dfe5ef;
+      --blue: #2364db;
+      --blue-soft: #eaf1ff;
+      --green: #0f8f62;
+      --yellow: #fff7df;
+      --yellow-line: #f1ce75;
+      --shadow: 0 16px 50px rgba(31, 45, 70, 0.10);
+      --radius: 8px;
+      font-family: Inter, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    header {
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    .topbar {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    button, a.button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    button.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 28px 36px;
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .form {
+      padding: 18px;
+      position: sticky;
+      top: 96px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 650;
+      margin: 14px 0 7px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 11px;
+      font: inherit;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-soft);
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .output {
+      display: grid;
+      gap: 20px;
+    }
+
+    .preview {
+      padding: 20px 22px;
+    }
+
+    .preview h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .report {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 16px;
+      background: #fcfdff;
+      line-height: 1.65;
+      min-height: 360px;
+    }
+
+    .report p {
+      margin: 0 0 5px;
+    }
+
+    .indent {
+      padding-left: 20px;
+    }
+
+    .callout {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--yellow-line);
+      background: var(--yellow);
+      border-radius: 6px;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .callout a {
+      color: var(--blue);
+      word-break: break-all;
+    }
+
+    .table-wrap {
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 820px;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 14px;
+    }
+
+    col:nth-child(1), col:nth-child(2), col:nth-child(3) { width: 90px; }
+    col:nth-child(4) { width: 520px; }
+    col:nth-child(5) { width: 260px; }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+      background: #fff;
+    }
+
+    th {
+      background: #f0f4fa;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    td.week {
+      vertical-align: middle;
+      text-align: center;
+      font-weight: 700;
+      color: var(--green);
+      background: #f2fbf7;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      background: #172033;
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 6px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: 160ms ease;
+      pointer-events: none;
+      font-size: 14px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .form {
+        position: static;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .actions {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="topbar">
+        <div>
+          <h1>飞书日报自动化 Agent Demo</h1>
+          <p class="subtitle">输入满意度、老板要求和 done，实时生成日报，并模拟写入飞书日报表格。</p>
+        </div>
+        <div class="actions">
+          <button id="copyBtn">复制日报</button>
+          <a class="button" href="../" target="_blank" rel="noreferrer">返回作品集</a>
+          <button class="primary" id="sampleBtn">填入示例</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel form">
+        <h2 class="section-title">日报输入</h2>
+        <div class="row">
+          <div>
+            <label for="date">日期</label>
+            <input id="date" type="date" />
+          </div>
+          <div>
+            <label for="score">满意度</label>
+            <input id="score" type="number" min="1" max="10" step="0.5" value="7" />
+          </div>
+        </div>
+
+        <label for="requirements">老板的要求</label>
+        <textarea id="requirements">完成NPC的批量作业批改
+准备个人AI项目的汇报资料</textarea>
+
+        <label for="done">done</label>
+        <textarea id="done">完成NPC的批量作业批改
+准备个人AI项目的汇报资料，并跑通初版AI Agent，开始完善迭代</textarea>
+
+        <label for="links">附件链接（可选）</label>
+        <textarea id="links" placeholder="每行一个链接。飞书文档或普通网页链接都可以。"></textarea>
+
+        <p class="hint">这是作品集 Demo，不会改动真实飞书文档。真实 Agent 会通过飞书 CLI 写入文档并通知群机器人。</p>
+      </section>
+
+      <section class="output">
+        <section class="panel preview">
+          <h2>生成日报预览</h2>
+          <div id="report" class="report"></div>
+        </section>
+
+        <section class="panel preview">
+          <h2>模拟插入表格效果</h2>
+          <div class="table-wrap">
+            <table>
+              <colgroup>
+                <col><col><col><col><col>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>周次</th>
+                  <th>星期几</th>
+                  <th>日期</th>
+                  <th>每日日报</th>
+                  <th>日报模板</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="weekCell" class="week" rowspan="3">第五周</td>
+                  <td id="weekdayCell">WED</td>
+                  <td id="dateCell">7.1</td>
+                  <td id="tableReport"></td>
+                  <td class="small">真实写入时保留为空或沿用模板列。</td>
+                </tr>
+                <tr>
+                  <td>TUE</td>
+                  <td>6.30</td>
+                  <td class="small">已有日报记录示例。</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>MON</td>
+                  <td>6.29</td>
+                  <td class="small">已有日报记录示例。</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast">已复制</div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const baseMonday = new Date(2026, 5, 29);
+    const baseWeek = 5;
+
+    function todayInputValue() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      const day = String(now.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function parseDate(value) {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function dayDiff(a, b) {
+      const left = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+      const right = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+      return Math.floor((right - left) / 86400000);
+    }
+
+    function cnWeek(num) {
+      const map = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
+      if (num <= 10) return `第${map[num]}周`;
+      if (num < 20) return `第十${map[num - 10]}周`;
+      return `第${num}周`;
+    }
+
+    function meta(date) {
+      const day = date.getDay();
+      const names = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+      const weekNum = baseWeek + Math.floor(dayDiff(baseMonday, date) / 7);
+      return {
+        weekday: names[day],
+        dateText: `${date.getMonth() + 1}.${date.getDate()}`,
+        weekText: cnWeek(weekNum),
+        weekend: day === 0 || day === 6
+      };
+    }
+
+    function lines(value) {
+      return value
+        .split(/\n|；|;/)
+        .map((item) => item.trim())
+        .filter(Boolean);
+    }
+
+    function linkLines() {
+      const urlRegex = /https?:\/\/[^\s<>"'。 ，；；)）]+/g;
+      const fromText = `${$("requirements").value}\n${$("done").value}\n${$("links").value}`;
+      return [...new Set(fromText.match(urlRegex) || [])];
+    }
+
+    function renderBullets(items) {
+      return items.map((item) => `<p class="indent">· ${escapeHtml(item.replace(/^[-·•\d.\s]+/, ""))}</p>`).join("");
+    }
+
+    function unique(items) {
+      return [...new Set(items.filter(Boolean))];
+    }
+
+    function cleanTask(line) {
+      return String(line || "")
+        .replace(/https?:\/\/\S+/g, "")
+        .replace(/^[-·•\d.\s]+/, "")
+        .replace(/^(完成|准备|整理|搭建|跑通|优化|完善|推进|产出|梳理|修改|更新|测试|验证|对接)/, "")
+        .trim()
+        .replace(/[，。；;,.]+$/, "");
+    }
+
+    function splitTaskParts(item) {
+      return unique(String(item || "")
+        .replace(/https?:\/\/\S+/g, "")
+        .split(/\r?\n|[，,；;。]|并且|同时|以及|开始/)
+        .map((part) => cleanTask(part))
+        .filter((part) => part.length >= 2));
+    }
+
+    function taskParts(items) {
+      return unique(items.flatMap((item) => splitTaskParts(item)));
+    }
+
+    function shortText(value, maxLength = 28) {
+      const text = cleanTask(value);
+      if (text.length <= maxLength) return text;
+      return `${text.slice(0, maxLength)}...`;
+    }
+
+    function coverageScore(left, right) {
+      const a = cleanTask(left);
+      const b = cleanTask(right);
+      if (!a || !b) return 0;
+      if (a.includes(b) || b.includes(a)) return 1;
+      const ignore = new Set(["的", "了", "和", "与", "及", "并", "把", "将", "为", "对", "在", "中"]);
+      const chars = unique([...a].filter((char) => !ignore.has(char) && /\S/.test(char)));
+      if (!chars.length) return 0;
+      const hits = chars.filter((char) => b.includes(char)).length;
+      return hits / chars.length;
+    }
+
+    function bestMatch(requirement, doneParts) {
+      const req = cleanTask(requirement);
+      let best = { task: "", score: 0 };
+      for (const done of doneParts) {
+        const score = coverageScore(req, done);
+        if (score > best.score) best = { task: done, score };
+      }
+      return best;
+    }
+
+    function hashText(text) {
+      let hash = 0;
+      for (const char of String(text)) {
+        hash = ((hash << 5) - hash + char.charCodeAt(0)) | 0;
+      }
+      return Math.abs(hash);
+    }
+
+    function pick(options, seed, offset = 0) {
+      return options[(hashText(seed) + offset) % options.length];
+    }
+
+    function quoteTask(task) {
+      return `「${shortText(task)}」`;
+    }
+
+    function taskMood(task) {
+      const text = String(task);
+      if (/跑通|搭建|实现|开发|Agent|agent|AI|系统|自动化/.test(text)) return "prototype";
+      if (/汇报|资料|文档|手册|方案|PPT|总结/.test(text)) return "presentation";
+      if (/批改|审核|检查|校对|整理|统计/.test(text)) return "operation";
+      if (/反馈|访谈|调研|用户|竞品/.test(text)) return "research";
+      return "general";
+    }
+
+    function nextAction(task, state) {
+      const q = quoteTask(task);
+      const mood = taskMood(task);
+      const options = {
+        prototype: [
+          `把${q}再跑一轮真实场景测试，记录卡住的步骤和需要迭代的交互细节`,
+          `围绕${q}补一份最小可展示流程，方便后续汇报时直接说明输入、处理和输出`,
+          `继续验证${q}的稳定性，把能复用的步骤整理成清单`
+        ],
+        presentation: [
+          `把${q}的材料按“目标-过程-结果-下一步”重新收一遍，让汇报重点更集中`,
+          `补齐${q}里的案例、截图或结果说明，避免展示时只有过程没有成果`,
+          `检查${q}的表达顺序，把最能体现产出的部分提前`
+        ],
+        operation: [
+          `复盘${q}的处理标准，整理容易出错的情况，减少后续重复确认`,
+          `抽查${q}的完成质量，把异常样例和判断依据单独记录下来`,
+          `把${q}沉淀成可复用流程，下一次同类任务可以直接套用检查清单`
+        ],
+        research: [
+          `继续补充${q}的样本和结论，把零散信息整理成可判断的依据`,
+          `对${q}做一次横向对比，提炼最影响后续决策的发现`,
+          `把${q}里的关键发现转成下一步可执行动作`
+        ],
+        general: [
+          `继续推进${q}，把今天已经明确的部分转成可交付结果`,
+          `复盘${q}的完成情况，补齐还缺的材料、反馈或验证记录`,
+          `把${q}拆成更小的后续动作，优先处理最影响进度的一项`
+        ]
+      };
+      return pick(options[mood], `${state}:${task}`);
+    }
+
+    function assumptionFor(task, state) {
+      const q = quoteTask(task);
+      const mood = taskMood(task);
+      const options = {
+        prototype: [
+          `假设${q}能在更多真实输入下稳定运行，它就可以从“能用”继续往“可展示、可复用”推进`,
+          `假设继续用实际场景压测${q}，下一版最该优化的地方会更快暴露出来`
+        ],
+        presentation: [
+          `假设${q}的结构更清楚，老板理解项目价值和后续计划的成本会明显降低`,
+          `假设把${q}和实际成果绑定起来，汇报时会比单纯描述过程更有说服力`
+        ],
+        operation: [
+          `假设${q}的标准被记录清楚，后续批量处理时会更稳定，也更容易交接`,
+          `假设把${q}中的异常情况提前归类，之后遇到类似任务可以少走弯路`
+        ],
+        research: [
+          `假设${q}继续扩大样本，结论会更可靠，也更能支撑下一步判断`,
+          `假设把${q}转成明确判断依据，后续方案选择会更稳`
+        ],
+        general: [
+          `假设${q}继续按今天的节奏推进，后续交付会更完整`,
+          `假设把${q}的过程及时记录下来，下次处理类似任务会更快进入状态`
+        ]
+      };
+      return pick(options[mood], `${state}:${task}`, 1);
+    }
+
+    function learningFor(task, state) {
+      const q = quoteTask(task);
+      const mood = taskMood(task);
+      const options = {
+        prototype: [
+          `今天做${q}让我更明显地感受到：初版跑通只是起点，真正有价值的是后续根据使用反馈迭代`,
+          `通过${q}，我对“把想法落成可操作流程”这件事有了更具体的理解`
+        ],
+        presentation: [
+          `整理${q}时发现，汇报材料不能只写做了什么，还要把为什么做、做到哪里讲清楚`,
+          `通过${q}，我更清楚地意识到表达顺序会直接影响别人理解成果的速度`
+        ],
+        operation: [
+          `处理${q}让我意识到，批量任务越重复，越需要先统一标准再执行`,
+          `通过${q}，我对流程化处理和质量抽查的重要性有了更具体的体感`
+        ],
+        research: [
+          `做${q}让我意识到，调研不是堆信息，而是要把信息整理成能支持判断的结论`,
+          `通过${q}，我更清楚地看到从现象到结论之间需要补足证据链`
+        ],
+        general: [
+          `推进${q}让我更清楚，任务完成后及时复盘会让下一步更好接上`,
+          `通过${q}，我学会把零散动作和最终交付结果对齐起来看`
+        ]
+      };
+      return pick(options[mood], `${state}:${task}`, 2);
+    }
+
+    function relationTodo(req, done, score) {
+      const reqText = quoteTask(req);
+      const doneText = quoteTask(done || req);
+      if (score >= 0.55 && done && cleanTask(req) !== cleanTask(done)) {
+        return `把${doneText}对照老板要求里的${reqText}再检查一遍，补充缺失的结果说明和可交付材料`;
+      }
+      if (score >= 0.55) {
+        return nextAction(req, "covered-relation");
+      }
+      return `老板要求里的${reqText}还没有在 done 中完全体现，下一步优先补齐这部分并形成明确产出`;
+    }
+
+    function relationAssumption(req, done, score) {
+      const reqText = quoteTask(req);
+      const doneText = quoteTask(done || req);
+      if (score >= 0.55 && done && cleanTask(req) !== cleanTask(done)) {
+        return `假设${doneText}能继续贴合${reqText}的目标，今天的成果就能更顺畅地转成可汇报内容`;
+      }
+      if (score >= 0.55) {
+        return assumptionFor(req, "covered-relation");
+      }
+      return `假设先把${reqText}补到可交付状态，再复盘今天已完成的部分，整体日报会更完整`;
+    }
+
+    function relationLearning(req, done, score) {
+      const reqText = quoteTask(req);
+      const doneText = quoteTask(done || req);
+      if (score >= 0.55 && done && cleanTask(req) !== cleanTask(done)) {
+        return `今天从${reqText}推进到${doneText}，让我更清楚地看到：日报要写出“要求”和“实际产出”之间的对应关系`;
+      }
+      if (score >= 0.55) {
+        return learningFor(req, "covered-relation");
+      }
+      return `今天也提醒我，像${reqText}这种尚未完全覆盖的任务，需要更早拆出下一步动作`;
+    }
+
+    function smartSections(req, done) {
+      const doneParts = taskParts(done);
+      const reqClean = req.map((item) => cleanTask(item)).filter(Boolean);
+      const matched = reqClean.map((item) => ({ req: item, match: bestMatch(item, doneParts) }));
+      const pendingReqs = matched.filter((item) => item.match.score < 0.55).map((item) => item.req);
+      const coveredReqs = matched.filter((item) => item.match.score >= 0.55).map((item) => item.req);
+      const extraParts = doneParts.filter((donePart) => !reqClean.some((item) => coverageScore(item, donePart) >= 0.55));
+      const mainDone = doneParts[0] || done[0] || reqClean[0] || "今日任务";
+      const focus = pendingReqs[0] || extraParts[0] || coveredReqs[0] || mainDone;
+      const todos = [];
+      const assumptions = [];
+      const summary = [];
+
+      matched.slice(0, 2).forEach(({ req, match }) => {
+        todos.push(relationTodo(req, match.task, match.score));
+      });
+
+      pendingReqs.slice(0, 2).forEach((task) => {
+        if (todos.length < 3) todos.push(nextAction(task, "pending"));
+      });
+
+      extraParts.slice(0, 2).forEach((task) => {
+        if (todos.length < 3) todos.push(nextAction(task, "extra"));
+      });
+
+      if (todos.length < 2) {
+        coveredReqs.slice(0, 2 - todos.length).forEach((task) => {
+          todos.push(nextAction(task, "covered"));
+        });
+      }
+
+      if (!todos.length) {
+        todos.push(nextAction(focus, "fallback"));
+      }
+
+      matched.slice(0, 2).forEach(({ req, match }) => {
+        assumptions.push(relationAssumption(req, match.task, match.score));
+        summary.push(relationLearning(req, match.task, match.score));
+      });
+
+      [focus, extraParts[0], coveredReqs[0], pendingReqs[0]].filter(Boolean).slice(0, 3).forEach((task, index) => {
+        if (assumptions.length < 2) assumptions.push(assumptionFor(task, `assumption-${index}`));
+        if (summary.length < 3) summary.push(learningFor(task, `learning-${index}`));
+      });
+
+      return {
+        todos: unique(todos).slice(0, 3),
+        assumptions: unique(assumptions).slice(0, 2),
+        summary: unique(summary).slice(0, 3)
+      };
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function reportHtml() {
+      const date = parseDate($("date").value);
+      const info = meta(date);
+      const req = lines($("requirements").value);
+      const done = lines($("done").value);
+      const generated = smartSections(req, done);
+      const links = linkLines();
+      const attachment = links.length ? `
+        <div class="callout">
+          <div class="callout-title">📎 附件：</div>
+          ${links.map((link) => `<p><a href="${escapeHtml(link)}" target="_blank" rel="noreferrer">${escapeHtml(link)}</a></p>`).join("")}
+        </div>
+      ` : "";
+
+      if (info.weekend) {
+        return `<p>周六、周日按规则跳过，不生成日报。</p>`;
+      }
+
+      return `
+        <p>· ${info.dateText} 黎凯迎日报</p>
+        <p>· 满意度：${escapeHtml($("score").value)}分</p>
+        <p>· 老板的要求：</p>
+        ${renderBullets(req)}
+        <p>· Done（已完成）：</p>
+        ${renderBullets(done)}
+        <p>· Todo：</p>
+        ${renderBullets(generated.todos)}
+        <p>· 假设：</p>
+        ${renderBullets(generated.assumptions)}
+        <p>· 小结 &amp; 新收获：</p>
+        ${renderBullets(generated.summary)}
+        ${attachment}
+      `;
+    }
+
+    function reportPlainText() {
+      const div = document.createElement("div");
+      div.innerHTML = reportHtml().replace(/<br\s*\/?>/g, "\n");
+      return div.innerText.trim();
+    }
+
+    function render() {
+      const date = parseDate($("date").value);
+      const info = meta(date);
+      const html = reportHtml();
+      $("report").innerHTML = html;
+      $("tableReport").innerHTML = html;
+      $("weekCell").textContent = info.weekText;
+      $("weekdayCell").textContent = info.weekday;
+      $("dateCell").textContent = info.dateText;
+    }
+
+    function showToast(text) {
+      $("toast").textContent = text;
+      $("toast").classList.add("show");
+      setTimeout(() => $("toast").classList.remove("show"), 1400);
+    }
+
+    $("date").value = todayInputValue();
+    ["date", "score", "requirements", "done", "links"].forEach((id) => {
+      $(id).addEventListener("input", render);
+    });
+
+    $("copyBtn").addEventListener("click", async () => {
+      await navigator.clipboard.writeText(reportPlainText());
+      showToast("日报已复制");
+    });
+
+    $("sampleBtn").addEventListener("click", () => {
+      $("score").value = "7";
+      $("requirements").value = "完成NPC的批量作业批改\n准备个人AI项目的汇报资料";
+      $("done").value = "完成NPC的批量作业批改\n准备个人AI项目的汇报资料，并跑通初版AI Agent，开始完善迭代";
+      $("links").value = "https://example.com/sanitized-demo-link";
+      render();
+      showToast("示例已填入");
+    });
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.env
+.env.*
+config.json
+*.log
+node_modules/
+daily-report-table.xml
+*.tmp
+*.bak
