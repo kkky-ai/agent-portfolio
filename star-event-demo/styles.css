@@ -967,7 +967,68 @@ textarea {
     transform: none;
   }
   .editor-panel {
+    inset: 0;
+    width: 100vw;
+    min-height: 100dvh;
+    padding: 18px;
+    overflow-y: auto;
+    background:
+      linear-gradient(180deg, rgba(5, 8, 22, 0.94), rgba(7, 11, 30, 0.96)),
+      url("./assets/cosmic-bg.png") center top / cover scroll,
+      #040612;
+    border-left: 0;
+    transform: translateX(100%);
     will-change: transform;
+  }
+  .editor-panel.open {
+    transform: translateX(0);
+  }
+  .summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .summary-card {
+    padding: 9px 7px;
+  }
+  .summary-card span {
+    white-space: normal;
+  }
+  .summary-card strong {
+    font-size: 21px;
+  }
+  .two-cols {
+    grid-template-columns: 1fr;
+  }
+  .weekday-row,
+  .calendar-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    min-width: 0;
+    width: 100%;
+  }
+  .weekday-row span {
+    padding: 0 3px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .calendar-grid {
+    gap: 5px;
+  }
+  .day-cell {
+    min-height: 74px;
+    padding: 6px 4px;
+  }
+  .day-number {
+    font-size: 12px;
+  }
+  .today-pill {
+    display: none;
+  }
+  .event-pill {
+    padding: 5px 4px;
+    border-left-width: 3px;
+    font-size: 11px;
+  }
+  .event-time {
+    display: none;
   }
 }
 

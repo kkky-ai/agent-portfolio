@@ -683,5 +683,10 @@ document.addEventListener("paste", async (event) => {
 });
 fields.imageUrls.addEventListener("input", renderImages);
 
-newEvent(state.selectedDate);
-render();
+if (window.matchMedia("(min-width: 761px)").matches) {
+  newEvent(state.selectedDate);
+} else {
+  showForm();
+  closeEditor();
+  render();
+}
