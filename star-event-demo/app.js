@@ -364,8 +364,27 @@ async function uploadImageFiles(files) {
 
 function fileToDataUrl(file) {
   return new Promise((resolve, reject) => {
+    const image = new Image();
     const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
+    reader.onload = () => {
+      image.onload = () => {
+        const aspect = image.height / Math.max(image.width, 1);
+        const isLongImage = aspect >= 2.2;
+        const maxWidth = isLongImage ? 1280 : 2200;
+        const maxHeight = isLongImage ? 18000 : 2200;
+        const maxPixels = isLongImage ? 16_000_000 : 8_000_000;
+        const pixelScale = Math.sqrt(maxPixels / Math.max(image.width * image.height, 1));
+        const scale = Math.min(1, maxWidth / image.width, maxHeight / image.height, pixelScale);
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round(image.width * scale));
+        canvas.height = Math.max(1, Math.round(image.height * scale));
+        canvas.getContext("2d").drawImage(image, 0, 0, canvas.width, canvas.height);
+        const webp = canvas.toDataURL("image/webp", 0.92);
+        resolve(webp.startsWith("data:image/webp") ? webp : canvas.toDataURL("image/jpeg", 0.92));
+      };
+      image.onerror = reject;
+      image.src = reader.result;
+    };
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
