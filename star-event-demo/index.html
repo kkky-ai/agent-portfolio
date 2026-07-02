@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>星标大事提醒 Agent Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">★</div>
+          <div>
+            <h1>星标大事提醒 Agent Demo</h1>
+            <p>安全演示版：重大事项、提前提醒、准备清单</p>
+          </div>
+        </div>
+
+        <section class="summary">
+          <div class="summary-card">
+            <span>今日大事</span>
+            <strong id="todayCount">0</strong>
+          </div>
+          <div class="summary-card">
+            <span>本周大事</span>
+            <strong id="weekCount">0</strong>
+          </div>
+          <div class="summary-card">
+            <span>五星事项</span>
+            <strong id="fiveStarCount">0</strong>
+          </div>
+        </section>
+
+        <section class="agenda-block">
+          <div class="block-head">
+            <h2>今日</h2>
+            <span id="todayLabel"></span>
+          </div>
+          <div id="todayAgenda" class="agenda-list"></div>
+        </section>
+
+        <section class="agenda-block">
+          <div class="block-head">
+            <h2>本周</h2>
+            <span>按时间排序</span>
+          </div>
+          <div id="weekAgenda" class="agenda-list"></div>
+        </section>
+      </aside>
+
+      <main class="calendar-area">
+        <header class="toolbar">
+          <div class="month-nav">
+            <button id="prevMonth" class="icon-btn" title="上个月">‹</button>
+            <div>
+              <div id="monthTitle" class="month-title"></div>
+              <div id="monthSubtitle" class="month-subtitle"></div>
+            </div>
+            <button id="nextMonth" class="icon-btn" title="下个月">›</button>
+          </div>
+          <div class="toolbar-actions">
+            <button id="todayBtn" class="secondary-btn">今天</button>
+            <button id="exportCalendarBtn" class="secondary-btn">导出演示日历</button>
+            <button id="newEventBtn" class="primary-btn">新增大事</button>
+          </div>
+        </header>
+
+        <div class="weekday-row">
+          <span>周一</span><span>周二</span><span>周三</span><span>周四</span><span>周五</span><span>周六</span><span>周日</span>
+        </div>
+        <section id="calendarGrid" class="calendar-grid"></section>
+      </main>
+
+      <aside class="editor-panel">
+        <div class="panel-head">
+          <div>
+            <h2 id="panelTitle">新增大事</h2>
+            <p id="panelHint">选择日期后填写事项</p>
+          </div>
+          <button id="closeEditor" class="icon-btn hide-desktop" title="关闭">×</button>
+        </div>
+
+        <section id="eventDetail" class="event-detail" hidden></section>
+
+        <form id="eventForm" class="event-form">
+          <input type="hidden" id="eventId" />
+          <label>
+            <span>事情名称</span>
+            <input id="title" required placeholder="例如：mentor 汇报" />
+          </label>
+          <div class="two-cols">
+            <label>
+              <span>开始日期</span>
+              <input id="startDate" type="date" required />
+            </label>
+            <label>
+              <span>结束日期</span>
+              <input id="endDate" type="date" required />
+            </label>
+          </div>
+          <div class="two-cols">
+            <label>
+              <span>时间</span>
+              <input id="time" type="time" />
+            </label>
+            <label>
+              <span>地点</span>
+              <input id="location" placeholder="会议室 / 飞书会议 / 地点" />
+            </label>
+          </div>
+          <label>
+            <span>重要程度</span>
+            <div id="stars" class="stars" aria-label="重要程度"></div>
+          </label>
+          <label>
+            <span>状态</span>
+            <select id="status">
+              <option value="not_started">未开始</option>
+              <option value="preparing">准备中</option>
+              <option value="done">已完成</option>
+              <option value="cancelled">已取消</option>
+            </select>
+          </label>
+          <label>
+            <span>提醒规则（可添加多个）</span>
+            <div id="reminderRows" class="reminder-rows"></div>
+            <button id="addReminder" type="button" class="add-row-btn">添加提醒时间</button>
+            <small class="field-help">每一行都是一次独立提醒，例如一周前和一天前会分别提醒。</small>
+          </label>
+          <label>
+            <span>准备清单</span>
+            <textarea id="checklist" rows="3" placeholder="一行一个动作，例如：检查 PPT"></textarea>
+          </label>
+          <label>
+            <span>备注</span>
+            <textarea id="notes" rows="4" placeholder="可以写补充说明、注意事项"></textarea>
+          </label>
+          <label>
+            <span>链接</span>
+            <textarea id="links" rows="3" placeholder="一行一个链接"></textarea>
+            <div class="inline-actions">
+              <button id="pasteLinks" type="button" class="secondary-btn">粘贴剪贴板链接</button>
+            </div>
+          </label>
+          <label>
+            <span>图片</span>
+            <div class="upload-box" id="imageDropZone">
+              <input id="imageUpload" type="file" accept="image/*" multiple />
+              <div>
+                <strong>上传或粘贴图片</strong>
+                <p>点击选择本机图片，也可以直接 Ctrl+V 粘贴截图/图片。</p>
+              </div>
+            </div>
+            <textarea id="imageUrls" rows="2" placeholder="图片链接会自动出现在这里，也可以一行一个手动填写"></textarea>
+            <div class="inline-actions">
+              <button id="pasteImageOrLink" type="button" class="secondary-btn">粘贴图片或图片链接</button>
+            </div>
+          </label>
+
+          <div id="imagePreview" class="image-preview"></div>
+
+          <div class="form-actions">
+            <button id="deleteEvent" type="button" class="danger-btn">删除</button>
+            <button type="submit" class="primary-btn">保存大事</button>
+          </div>
+        </form>
+      </aside>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
