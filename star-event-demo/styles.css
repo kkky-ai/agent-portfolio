@@ -982,12 +982,22 @@ textarea {
     padding: 18px;
     overflow-y: auto;
     background:
-      linear-gradient(180deg, rgba(5, 8, 22, 0.94), rgba(7, 11, 30, 0.96)),
+      linear-gradient(180deg, rgba(9, 18, 48, 0.84), rgba(18, 14, 48, 0.82)),
       url("./assets/cosmic-bg.png") center top / cover scroll,
       #040612;
     border-left: 0;
     transform: translateX(100%);
     will-change: transform;
+  }
+  .editor-panel::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 20% 8%, rgba(100, 217, 255, 0.14), transparent 28%),
+      radial-gradient(circle at 85% 24%, rgba(157, 124, 255, 0.13), transparent 30%);
+    z-index: -1;
   }
   .editor-panel.open {
     transform: translateX(0);
