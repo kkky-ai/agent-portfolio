@@ -22,6 +22,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   height: 100vh;
@@ -689,6 +693,11 @@ textarea {
 
 .event-detail[hidden] {
   display: none;
+}
+
+.editor-panel.detail-mode .event-form,
+.editor-panel.form-mode .event-detail {
+  display: none !important;
 }
 
 .detail-hero {

@@ -414,11 +414,15 @@ function closeEditor() {
 }
 
 function showForm() {
+  els.panel.classList.add("form-mode");
+  els.panel.classList.remove("detail-mode");
   els.form.hidden = false;
   els.detail.hidden = true;
 }
 
 function showDetailPanel(event) {
+  els.panel.classList.add("detail-mode");
+  els.panel.classList.remove("form-mode");
   els.form.hidden = true;
   els.detail.hidden = false;
   els.panelTitle.textContent = event.title || "大事详情";
