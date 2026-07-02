@@ -14,6 +14,7 @@ https://kkky-ai.github.io/agent-portfolio/
 | 磕学家养成手册 | AI 磕 CP 模拟器，生成 CP 设子、剧情、聊天记录和图片 Prompt | https://app-c646jovqbgu9.appmiaoda.com/home |
 | Hackerverse 报纸机 | 面向黑客松现场的 AI 报纸打卡装置与作品关系星图 | https://hackathon-03.onrender.com/generate |
 | 飞书日报自动化 Agent | 根据满意度、老板要求和 done 自动生成日报的办公自动化 Agent | https://kkky-ai.github.io/agent-portfolio/daily-report-demo/ |
+| 星标大事提醒 Agent | 重大事项日历提醒 Agent，支持多提醒节点、附件资料、图片和手机日历导出 | https://star-event-reminder-agent.onrender.com |
 
 ## 项目亮点
 
@@ -53,3 +54,22 @@ https://kkky-ai.github.io/agent-portfolio/daily-report-demo/
 - 自动生成 Todo、假设、小结与新收获。
 - 自动识别飞书文档链接和普通链接。
 - 支持飞书文档写入和群机器人通知。
+
+### 星标大事提醒 Agent
+
+在线项目：
+
+https://star-event-reminder-agent.onrender.com
+
+项目仓库：
+
+https://github.com/kkky-ai/star-event-reminder-agent
+
+核心能力：
+
+- 像日历一样展示准确日期，支持按日期创建单日或跨日期大事。
+- 每个事件可记录事情、时间、地点、五星重要程度、备注、链接、图片和准备清单。
+- 支持单个或多个提醒节点，例如提前一周、提前一天、提前数小时。
+- 当天多个大事按时间从早到晚排序展示。
+- 支持导出 `.ics` 手机日历文件，把事件导入手机系统日历并触发系统提醒。
+- 公开版部署在 Render 免费服务上，适合面试官扫码试用；本地版可继续扩展飞书群提醒等自动化能力。
