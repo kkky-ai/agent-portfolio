@@ -869,11 +869,27 @@ textarea {
 }
 
 @media (max-width: 760px) {
+  :root {
+    --glass-blur: none;
+    --shadow: 0 10px 26px rgba(0, 0, 0, 0.24);
+  }
   body {
     height: auto;
     min-height: 100dvh;
     overflow-x: hidden;
     overflow-y: auto;
+    background:
+      linear-gradient(180deg, rgba(2, 4, 14, 0.18), rgba(2, 4, 14, 0.6)),
+      url("./assets/cosmic-bg.png") center top / cover scroll,
+      #040612;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+  body::before {
+    opacity: 0.26;
+  }
+  body::after {
+    display: none;
   }
   .app-shell {
     display: block;
@@ -881,15 +897,41 @@ textarea {
     min-height: 100dvh;
     overflow: visible;
   }
+  .sidebar,
+  .editor-panel,
+  .calendar-area,
+  .day-cell,
+  .event-pill,
+  .agenda-item,
+  .summary-card,
+  .detail-hero,
+  .detail-section,
+  input,
+  select,
+  textarea,
+  .icon-btn,
+  .primary-btn,
+  .secondary-btn,
+  .danger-btn {
+    backdrop-filter: none;
+    box-shadow: none;
+  }
   .sidebar {
     border-right: 0;
     border-bottom: 1px solid var(--line);
     max-height: none;
+    overflow: visible;
   }
   .calendar-area {
     padding: 16px;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+  .toolbar-actions {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
     -webkit-overflow-scrolling: touch;
   }
   .toolbar {
@@ -901,10 +943,36 @@ textarea {
     grid-template-columns: repeat(7, minmax(84px, 1fr));
     min-width: 620px;
   }
+  .weekday-row {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   .calendar-grid {
     overflow-x: auto;
+    overflow-y: visible;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
   }
   .day-cell {
     min-height: 118px;
+  }
+  .day-cell::before {
+    opacity: 0.14;
+  }
+  .agenda-item:hover,
+  .event-pill:hover,
+  .day-cell:hover,
+  .secondary-btn:hover,
+  .icon-btn:hover {
+    transform: none;
+  }
+  .editor-panel {
+    will-change: transform;
+  }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .editor-panel {
+    transition: transform 0.14s ease;
   }
 }
