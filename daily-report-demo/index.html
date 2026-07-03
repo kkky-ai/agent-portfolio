@@ -169,6 +169,32 @@
       margin-top: 8px;
     }
 
+    .workflow {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #f8fbff;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .workflow strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--ink);
+    }
+
+    .workflow p {
+      margin: 0 0 6px;
+      color: var(--muted);
+    }
+
+    .workflow .success {
+      color: var(--green);
+      font-weight: 700;
+    }
+
     .output {
       display: grid;
       gap: 20px;
@@ -311,6 +337,7 @@
         </div>
         <div class="actions">
           <button id="copyBtn">复制日报</button>
+          <button id="simulateBtn">模拟写入</button>
           <a class="button" href="../" target="_blank" rel="noreferrer">返回作品集</a>
           <button class="primary" id="sampleBtn">填入示例</button>
         </div>
@@ -343,6 +370,11 @@
         <textarea id="links" placeholder="每行一个链接。飞书文档或普通网页链接都可以。"></textarea>
 
         <p class="hint">这是作品集 Demo，不会改动真实飞书文档。真实 Agent 会通过飞书 CLI 写入文档并通知群机器人。</p>
+        <div class="workflow">
+          <strong>真实 Agent 工作流模拟</strong>
+          <p id="workflowStatus">选择日期后，Agent 会判断是新增日报，还是覆盖已有日报。</p>
+          <p id="notifyStatus">写入成功后会在飞书群里发通知，并附上可实时查看的文档链接。</p>
+        </div>
       </section>
 
       <section class="output">
@@ -401,6 +433,8 @@
     const $ = (id) => document.getElementById(id);
     const baseMonday = new Date(2026, 5, 29);
     const baseWeek = 5;
+    const demoDocLink = "https://your-feishu-doc.example/safe-demo";
+    const existingDemoDates = new Set(["2026-07-01", "2026-07-02"]);
 
     function todayInputValue() {
       const now = new Date();
@@ -770,6 +804,11 @@
       $("weekCell").textContent = info.weekText;
       $("weekdayCell").textContent = info.weekday;
       $("dateCell").textContent = info.dateText;
+      const isExisting = existingDemoDates.has($("date").value);
+      $("workflowStatus").innerHTML = isExisting
+        ? `检测到 ${info.dateText} 已有日报。真实 Agent 会先询问是否覆盖；确认后才改写原行。`
+        : `检测到 ${info.dateText} 是新日期。真实 Agent 会按倒序规则插入到表头下方。`;
+      $("notifyStatus").innerHTML = `写入成功后，群机器人会发送：日报 Agent 已更新：${info.weekText} ${info.weekday} ${info.dateText}<br><a href="${demoDocLink}" target="_blank" rel="noreferrer">${demoDocLink}</a>`;
     }
 
     function showToast(text) {
@@ -786,6 +825,25 @@
     $("copyBtn").addEventListener("click", async () => {
       await navigator.clipboard.writeText(reportPlainText());
       showToast("日报已复制");
+    });
+
+    $("simulateBtn").addEventListener("click", () => {
+      const date = parseDate($("date").value);
+      const info = meta(date);
+      if (info.weekend) {
+        showToast("周末会跳过，不写入");
+        return;
+      }
+      const isExisting = existingDemoDates.has($("date").value);
+      if (isExisting && !confirm(`${info.dateText} 已经有日报。要模拟覆盖这一天的日报吗？`)) {
+        showToast("已取消模拟覆盖");
+        return;
+      }
+      $("workflowStatus").innerHTML = isExisting
+        ? `<span class="success">模拟覆盖完成：</span>${info.dateText} 的原日报已替换为当前预览。`
+        : `<span class="success">模拟新增完成：</span>${info.dateText} 已按倒序规则插入表格。`;
+      $("notifyStatus").innerHTML = `<span class="success">群通知模拟已发送：</span>日报 Agent 已更新：${info.weekText} ${info.weekday} ${info.dateText}<br><a href="${demoDocLink}" target="_blank" rel="noreferrer">${demoDocLink}</a>`;
+      showToast(isExisting ? "已模拟覆盖并通知群聊" : "已模拟新增并通知群聊");
     });
 
     $("sampleBtn").addEventListener("click", () => {
