@@ -46,7 +46,6 @@
     .eyebrow {
       color: var(--accent);
       font-weight: 700;
-      letter-spacing: 0;
       margin: 0;
     }
 
@@ -58,7 +57,7 @@
     }
 
     .intro {
-      max-width: 780px;
+      max-width: 820px;
       color: var(--muted);
       font-size: 18px;
       margin: 0;
@@ -106,7 +105,15 @@
       padding: 20px;
       display: grid;
       gap: 14px;
-      min-height: 420px;
+      min-height: 360px;
+    }
+
+    .card.featured {
+      grid-column: 1 / -1;
+      min-height: 0;
+      background:
+        radial-gradient(circle at 95% 12%, rgba(31, 111, 235, 0.10), transparent 18rem),
+        #fff;
     }
 
     .card h2 {
@@ -218,10 +225,7 @@
     }
 
     @media (max-width: 820px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
+      .grid,
       .showcase-grid {
         grid-template-columns: 1fr;
       }
@@ -237,11 +241,12 @@
     <div class="wrap hero">
       <p class="eyebrow">kkky-ai · Agent Portfolio</p>
       <h1>AI Agent 作品集</h1>
-      <p class="intro">这里收录了我围绕内容生成、信息判断、自动化办公和交互式应用搭建的 Agent 项目。每个项目都强调真实使用场景、可操作流程和可展示结果。</p>
+      <p class="intro">这里收录我围绕内容生成、信息判断、自动化办公、知识产品化和交互式应用搭建的 AI 项目。每个项目都强调真实使用场景、可操作流程和可展示结果。</p>
       <div class="meta">
         <span class="tag">AI Agent</span>
         <span class="tag">Workflow Automation</span>
         <span class="tag">Prompt & Product Design</span>
+        <span class="tag">Knowledge Productization</span>
         <span class="tag">GitHub: kkky-ai</span>
       </div>
     </div>
@@ -251,6 +256,27 @@
     <div class="wrap">
       <h2 class="section-title">Projects</h2>
       <section class="grid">
+        <article class="card featured">
+          <div>
+            <h2>孙宇晨155期访谈 · 21天商业开窍课</h2>
+            <p>把155期访谈这种复杂、海量、带争议的人物材料，产品化为一套可学习、可授课、可行动、可复盘的21天商业开窍学习系统。这个项目展示了我如何用 AI 辅助完成复杂信息结构化、课程产品设计、行动表设计和作品集化交付。</p>
+          </div>
+          <div class="project-meta">
+            <span class="pill">知识产品化</span>
+            <span class="pill">AI辅助课程设计</span>
+            <span class="pill">复杂材料结构化</span>
+            <span class="pill">作品集案例页</span>
+          </div>
+          <ul class="list">
+            <li>从原始访谈材料出发，重组为21个学习板块。</li>
+            <li>交付课程总体大纲、深度版PPT、讲课稿和个人学习行动表。</li>
+            <li>用作品集页面展示从材料到产品系统的完整过程。</li>
+          </ul>
+          <div class="links">
+            <a class="button" href="./sun-yuchen-course/">打开案例页</a>
+          </div>
+        </article>
+
         <article class="card">
           <div>
             <h2>真相猎人 · 女性谣言粉碎机</h2>
@@ -258,122 +284,119 @@
           </div>
           <div class="project-meta">
             <span class="pill">信息核查</span>
-            <span class="pill">谣言溯源</span>
             <span class="pill">女性议题</span>
+            <span class="pill">内容生成</span>
           </div>
           <ul class="list">
-            <li>标准化核查流程：议题分类、知识库检索、多维核查、结构化真相报告。</li>
-            <li>三层溯源体系：源头溯源、传播路径溯源、版本演变溯源。</li>
-            <li>双模式交互：理性分析模式给证据，共情守护模式给反驳话术和情绪支持。</li>
-            <li>三级知识库：事实库、套路库、用户易感档案库，支持“查一条谣、识一类谣”。</li>
+            <li>识别谣言类型、传播话术和潜在伤害。</li>
+            <li>给出结构化事实核查和可理解解释。</li>
+            <li>适合用于公共议题传播和科普内容生产。</li>
           </ul>
           <div class="links">
-            <a class="button" href="https://p6z55c4yv.zhaomi.cn/" target="_blank" rel="noreferrer">打开项目</a>
+            <a class="button" href="https://p6z55c4yv.zhaomi.cn/">打开项目</a>
           </div>
         </article>
 
         <article class="card">
           <div>
             <h2>磕学家养成手册</h2>
-            <p>AI 磕 CP 模拟器。用户输入 CP 信息、人物关系、情绪风格和想看的情节后，Agent 自动生成 CP 设子、剧情片段、聊天记录体、图片 Prompt 和今日磕点总结。</p>
+            <p>AI 磕 CP 模拟器，用于生成 CP 设定、剧情、聊天记录和图片 Prompt，让用户可以从人设、互动、名场面到视觉提示词完成一套轻量创作流程。</p>
           </div>
           <div class="project-meta">
-            <span class="pill">多模态内容生成</span>
-            <span class="pill">角色化 Agent</span>
-            <span class="pill">娱乐互动</span>
+            <span class="pill">内容生成</span>
+            <span class="pill">互动娱乐</span>
+            <span class="pill">Prompt Design</span>
           </div>
           <ul class="list">
-            <li>围绕“没粮吃、等太太、想产粮但不会产”的痛点设计即时内容包。</li>
-            <li>Agent 工作流：信息补全、CP 设子、剧情创作、聊天记录、图像 Prompt、内容整合。</li>
-            <li>支持甜、虐、甜虐等情绪风格，输出符合 CP 粉语境的内容。</li>
-            <li>内置安全边界：虚构同人声明，不对真人关系作事实断言。</li>
+            <li>生成 CP 基础设定和关系张力。</li>
+            <li>输出剧情片段、聊天记录和视觉 Prompt。</li>
+            <li>适合轻量内容创作和粉丝向互动体验。</li>
           </ul>
           <div class="links">
-            <a class="button" href="https://app-c646jovqbgu9.appmiaoda.com/home" target="_blank" rel="noreferrer">打开项目</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div>
-            <h2>Hackerverse 报纸机</h2>
-            <p>面向黑客松现场的 AI 报纸打卡装置。参赛者输入团队与项目信息、上传素材后，由 Poster Director Agent 生成一张印有“选手本人 + 团队 + 作品”的实体头版报纸，并沉淀进可扫码访问的黑客松宇宙星图。</p>
-          </div>
-          <div class="project-meta">
-            <span class="pill">线下 AI 装置</span>
-            <span class="pill">Poster Agent</span>
-            <span class="pill">关系图谱</span>
-          </div>
-          <ul class="list">
-            <li>原点日报机：把黑客松作品包装成可收藏、可传播的实体报纸头版。</li>
-            <li>原点宇宙星图：作品化作行星，创作者化作恒星，队友关系连成星链。</li>
-            <li>今日头版墙：现场实时滚动展示作品，形成打卡和传播氛围。</li>
-            <li>线上 Demo 复刻完整交互，用于远程评审和作品展示。</li>
-          </ul>
-          <div class="links">
-            <a class="button" href="https://hackathon-03.onrender.com/generate" target="_blank" rel="noreferrer">打开项目</a>
+            <a class="button" href="https://app-c646jovqbgu9.appmiaoda.com/home">打开项目</a>
           </div>
         </article>
 
         <article class="card">
           <div>
             <h2>飞书日报自动化 Agent</h2>
-            <p>真实接入飞书工作流的办公自动化 Agent。用户填写日期、满意度、老板要求和 done 后，Agent 自动生成日报，支持新增、补写和覆盖指定日期日报。</p>
+            <p>根据日期、满意度、老板要求和 done 自动生成日报的办公自动化 Agent。真实版本可写入飞书文档，并在群里发送附带文档链接的通知；公开仓库只保留安全 Demo。</p>
+          </div>
+          <div class="project-meta">
+            <span class="pill">办公自动化</span>
+            <span class="pill">Feishu</span>
+            <span class="pill">LLM Writing</span>
           </div>
           <ul class="list">
-            <li>自动识别日期、星期、工作周和表格插入位置。</li>
-            <li>根据输入内容生成 Todo、假设、小结与新收获。</li>
-            <li>如果指定日期已有日报，真实版本会先确认是否覆盖，避免误改原文档。</li>
-            <li>真实版本支持飞书文档写入、附件链接识别和群通知；通知消息会附上文档链接，公开版已移除敏感配置。</li>
+            <li>支持指定日期生成或覆盖日报。</li>
+            <li>自动组织 Todo、假设、小结和新收获。</li>
+            <li>真实版支持飞书文档写入和群通知。</li>
           </ul>
           <div class="links">
-            <a class="button" href="./daily-report-demo/" target="_blank">打开 Demo</a>
-            <a class="button secondary" href="https://github.com/kkky-ai/agent-portfolio" target="_blank" rel="noreferrer">查看仓库</a>
+            <a class="button" href="./daily-report-demo/">打开 Demo</a>
           </div>
         </article>
 
         <article class="card">
           <div>
             <h2>星标大事提醒 Agent</h2>
-            <p>面向学习、实习、比赛和汇报场景的重大事项日历提醒 Agent。公开作品集展示的是安全 Demo：面试官可以体验新增、编辑、多提醒节点和日历导出，但不会写入我的真实个人事项。</p>
+            <p>重大事项日历提醒 Agent，支持多提醒节点、附件资料、图片、准备清单和手机日历导出。公开版本为安全 Demo，不会写入我的真实个人事项。</p>
           </div>
           <div class="project-meta">
-            <span class="pill">Calendar Agent</span>
-            <span class="pill">Reminder Workflow</span>
-            <span class="pill">Mobile Calendar</span>
+            <span class="pill">日历提醒</span>
+            <span class="pill">移动端</span>
+            <span class="pill">Calendar Export</span>
           </div>
           <ul class="list">
-            <li>支持按日期创建单日或跨日期事件，记录时间、地点、重要程度、备注、链接和图片。</li>
-            <li>支持一个事件设置多个提醒节点，例如提前一周、提前一天、提前数小时。</li>
-            <li>按时间顺序展示当天/本周大事，并可点击事件查看完整详情或继续编辑。</li>
-            <li>支持导出手机日历文件，把网页里的事件导入手机系统日历并触发系统提醒。</li>
+            <li>每个事件可记录时间段、地点、重要程度、备注、链接和图片。</li>
+            <li>支持一个事件设置多个提醒节点。</li>
+            <li>支持导出手机日历文件，用系统日历承接提醒。</li>
           </ul>
           <div class="links">
-            <a class="button" href="./star-event-demo/" target="_blank">打开 Demo</a>
-            <a class="button secondary" href="https://github.com/kkky-ai/star-event-reminder-agent" target="_blank" rel="noreferrer">查看仓库</a>
+            <a class="button" href="./star-event-demo/">打开 Demo</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+            <h2>Hackerverse 报纸机</h2>
+            <p>面向黑客松现场的 AI 报纸打卡装置与作品关系星图，让参赛者可以生成自己的黑客松日报，并把项目关系可视化成现场传播内容。</p>
+          </div>
+          <div class="project-meta">
+            <span class="pill">线下互动</span>
+            <span class="pill">Hackathon</span>
+            <span class="pill">AI Newspaper</span>
+          </div>
+          <ul class="list">
+            <li>生成参赛项目的报纸式内容。</li>
+            <li>支持现场展示和传播。</li>
+            <li>结合黑客松语境做轻量互动装置。</li>
+          </ul>
+          <div class="links">
+            <a class="button" href="https://hackathon-03.onrender.com/generate">打开项目</a>
           </div>
         </article>
       </section>
 
       <section class="showcase">
-        <h2 class="section-title">Hackerverse Visuals</h2>
-        <p class="intro">Hackerverse 的核心不是单纯生成一张图，而是把黑客松现场的“人、作品、团队关系”包装成可打印、可扫码、可继续生长的现场记忆。</p>
+        <h2 class="section-title">Hackerverse Showcase</h2>
         <div class="showcase-grid">
           <figure class="shot">
-            <img src="./assets/hackerverse-home.png" alt="Hackerverse 装置交互首页" />
-            <figcaption>原点日报机入口：现场装置交互首页</figcaption>
+            <img src="./assets/hackerverse-home.png" alt="Hackerverse home screen" />
+            <figcaption>Hackerverse 入口界面</figcaption>
           </figure>
           <figure class="shot">
-            <img src="./assets/hackerverse-newspaper.jpg" alt="Hackerverse 报纸生成示例" />
-            <figcaption>真实报纸生成示例：作品头版纪念</figcaption>
+            <img src="./assets/hackerverse-newspaper.jpg" alt="Generated hackathon newspaper" />
+            <figcaption>AI 报纸生成结果</figcaption>
           </figure>
           <figure class="shot">
-            <img src="./assets/hackerverse-universe.png" alt="Hackerverse 宇宙星图" />
-            <figcaption>原点宇宙星图：作品与创作者关系沉淀</figcaption>
+            <img src="./assets/hackerverse-universe.png" alt="Project universe visualization" />
+            <figcaption>作品关系星图</figcaption>
           </figure>
         </div>
       </section>
 
-      <p class="note"><span class="status">说明：</span>公开作品集中不会包含任何飞书 token、webhook、公司文档权限或个人账号凭据。真实办公自动化能力以脱敏说明和安全 Demo 展示。</p>
+      <p class="note"><span class="status">Note:</span> 公开仓库中的飞书和日历类项目均为脱敏 Demo，不包含真实 token、webhook、个人事项或公司文档链接。</p>
     </div>
   </main>
 </body>

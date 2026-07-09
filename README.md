@@ -10,11 +10,27 @@ https://kkky-ai.github.io/agent-portfolio/
 
 | 项目 | 简介 | 链接 |
 | --- | --- | --- |
+| 孙宇晨155期访谈 · 21天商业开窍课 | 将复杂访谈材料产品化为21天课程系统，包含课程大纲、PPT、讲稿和个人学习行动表 | https://kkky-ai.github.io/agent-portfolio/sun-yuchen-course/ |
 | 真相猎人 · 女性谣言粉碎机 | 面向女性议题的智能核查与谣言拆解 Agent | https://p6z55c4yv.zhaomi.cn/ |
 | 磕学家养成手册 | AI 磕 CP 模拟器，生成 CP 设子、剧情、聊天记录和图片 Prompt | https://app-c646jovqbgu9.appmiaoda.com/home |
 | Hackerverse 报纸机 | 面向黑客松现场的 AI 报纸打卡装置与作品关系星图 | https://hackathon-03.onrender.com/generate |
 | 飞书日报自动化 Agent | 根据日期、满意度、老板要求和 done 自动生成日报的办公自动化 Agent | https://kkky-ai.github.io/agent-portfolio/daily-report-demo/ |
 | 星标大事提醒 Agent | 重大事项日历提醒 Agent，支持多提醒节点、附件资料、图片和手机日历导出；公开链接为安全 Demo | https://kkky-ai.github.io/agent-portfolio/star-event-demo/ |
+
+## 孙宇晨155期访谈 · 21天商业开窍课
+
+在线案例页：
+
+https://kkky-ai.github.io/agent-portfolio/sun-yuchen-course/
+
+这是一个知识产品化案例：把155期访谈这种复杂、海量、带争议的人物材料，重组为一套可学习、可授课、可行动、可复盘的21天课程系统。
+
+交付内容包括：
+
+- 课程总体大纲
+- 深度版讲课PPT
+- 配套讲课稿
+- 黎凯迎个人学习行动表
 
 ## 飞书日报自动化 Agent
 

@@ -1,0 +1,1112 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>孙宇晨155期访谈：21天商业开窍课｜作品集案例</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #687385;
+      --line: rgba(39, 47, 63, 0.14);
+      --paper: #fffaf0;
+      --soft: #f7ead8;
+      --gold: #b98535;
+      --rose: #ba6b57;
+      --green: #4f735c;
+      --blue: #3c6382;
+      --shadow: 0 18px 50px rgba(60, 42, 26, 0.14);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: #f4eadc;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(255,255,255,0.9), transparent 23rem),
+        linear-gradient(135deg, #f7efe5 0%, #fffaf0 42%, #ead8c4 100%);
+    }
+
+    a { color: inherit; }
+
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.8rem clamp(1rem, 4vw, 3.5rem);
+      background: rgba(255, 250, 240, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      min-width: 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 2rem;
+      height: 2rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(185, 133, 53, 0.35);
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--gold);
+      border-radius: 50%;
+      font-family: Georgia, serif;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover { border-color: var(--gold); color: var(--ink); }
+
+    .hero {
+      min-height: calc(100vh - 58px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 5vw, 5rem) 4rem;
+      position: relative;
+    }
+
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: auto -10% 6% 44%;
+      height: 46%;
+      background: linear-gradient(90deg, rgba(79, 115, 92, 0.10), rgba(185, 133, 53, 0.18), rgba(186, 107, 87, 0.10));
+      filter: blur(32px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--green);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .eyebrow:before {
+      content: "";
+      width: 2.4rem;
+      height: 1px;
+      background: var(--green);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 820px;
+      margin-bottom: 1.25rem;
+      font-size: clamp(2.5rem, 6vw, 5.6rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+      font-family: Georgia, "Times New Roman", "Microsoft YaHei", serif;
+      font-weight: 700;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      color: #3b4554;
+      font-size: clamp(1.05rem, 1.7vw, 1.32rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 2.8rem;
+      padding: 0.72rem 1.05rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(31, 41, 51, 0.18);
+      background: rgba(255, 255, 255, 0.62);
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--ink);
+      box-shadow: 0 8px 24px rgba(60, 42, 26, 0.08);
+    }
+
+    .btn.primary {
+      background: #273447;
+      color: #fffaf0;
+      border-color: #273447;
+    }
+
+    .hero-panel {
+      position: relative;
+      z-index: 1;
+      padding: clamp(1rem, 2vw, 1.35rem);
+      border: 1px solid rgba(39, 47, 63, 0.14);
+      background: rgba(255, 250, 240, 0.58);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .preview-frame {
+      display: block;
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid rgba(39, 47, 63, 0.12);
+      box-shadow: 0 20px 50px rgba(39, 47, 63, 0.16);
+      background: #fff;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .meta-item {
+      padding: 0.85rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.52);
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      color: var(--blue);
+    }
+
+    .meta-item span {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    section {
+      padding: clamp(3.5rem, 8vw, 6rem) clamp(1.2rem, 5vw, 5rem);
+    }
+
+    .section-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(280px, 0.58fr);
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2.4rem;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+      font-family: Georgia, "Times New Roman", "Microsoft YaHei", serif;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin-bottom: 0;
+    }
+
+    .band {
+      background: rgba(255, 255, 255, 0.34);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .problem-grid,
+    .method-grid,
+    .deliverables,
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .tile {
+      min-height: 100%;
+      padding: 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.62);
+      box-shadow: 0 12px 30px rgba(60, 42, 26, 0.08);
+    }
+
+    .tile h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.08rem;
+      line-height: 1.35;
+    }
+
+    .tile p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid rgba(185, 133, 53, 0.38);
+      border-radius: 50%;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-weight: 700;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 9rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.68);
+    }
+
+    .flow-step:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -0.55rem;
+      width: 0.35rem;
+      height: 0.35rem;
+      border-top: 1.5px solid var(--gold);
+      border-right: 1.5px solid var(--gold);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .flow-step:last-child:after { display: none; }
+
+    .flow-step small {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .flow-step strong {
+      display: block;
+      line-height: 1.35;
+    }
+
+    .flow-step span {
+      display: block;
+      margin-top: 0.55rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .course-map {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .day {
+      min-height: 7.4rem;
+      padding: 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .day strong {
+      display: block;
+      color: var(--rose);
+      font-family: Georgia, serif;
+      margin-bottom: 0.45rem;
+    }
+
+    .day span {
+      display: block;
+      color: #303b49;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .deliverable {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding: 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.7);
+      box-shadow: 0 12px 30px rgba(60, 42, 26, 0.08);
+    }
+
+    .deliverable .tag {
+      align-self: flex-start;
+      padding: 0.22rem 0.58rem;
+      border-radius: 999px;
+      background: rgba(60, 99, 130, 0.12);
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .deliverable h3 { margin-bottom: 0; }
+
+    .deliverable p {
+      flex: 1;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .artifact-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.55rem;
+      padding: 0.55rem 0.8rem;
+      border: 1px solid rgba(31, 41, 51, 0.16);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.62);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .quote {
+      display: grid;
+      grid-template-columns: minmax(0, 0.35fr) minmax(0, 0.65fr);
+      gap: 2rem;
+      align-items: center;
+      padding: clamp(1.4rem, 3vw, 2rem);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #273447;
+      color: #fffaf0;
+      box-shadow: var(--shadow);
+    }
+
+    .quote strong {
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      line-height: 1.12;
+      font-family: Georgia, "Times New Roman", "Microsoft YaHei", serif;
+    }
+
+    .quote p {
+      margin-bottom: 0;
+      color: rgba(255, 250, 240, 0.78);
+    }
+
+    .footer {
+      padding: 2rem clamp(1.2rem, 5vw, 5rem);
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .section-head,
+      .quote {
+        grid-template-columns: 1fr;
+      }
+
+      .problem-grid,
+      .method-grid,
+      .deliverables,
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .course-map {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .problem-grid,
+      .method-grid,
+      .deliverables,
+      .skills-grid,
+      .flow,
+      .course-map,
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-step:after { display: none; }
+
+      .hero {
+        padding-top: 2.5rem;
+      }
+    }
+
+    /* PPT reference style layer: a991b2b06fa5ed19a0642f646e21e9d0(1).pptx */
+    :root {
+      --ink: #13324a;
+      --muted: #647586;
+      --line: rgba(18, 82, 124, 0.18);
+      --paper: #fbf5ea;
+      --soft: #efe2cf;
+      --gold: #c39a58;
+      --rose: #9b6f57;
+      --green: #53715f;
+      --blue: #075d92;
+      --deep-blue: #064a76;
+      --shadow: 0 22px 48px rgba(6, 74, 118, 0.12);
+    }
+
+    body {
+      background:
+        linear-gradient(90deg, rgba(7, 93, 146, 0.035) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(7, 93, 146, 0.035) 1px, transparent 1px),
+        radial-gradient(circle at 13% 11%, rgba(255, 255, 255, 0.92), transparent 20rem),
+        radial-gradient(circle at 90% 18%, rgba(195, 154, 88, 0.16), transparent 18rem),
+        linear-gradient(135deg, #fbf4e8 0%, #fffaf2 46%, #eadbc8 100%);
+      background-size: 34px 34px, 34px 34px, auto, auto, auto;
+    }
+
+    body:before,
+    body:after {
+      content: "";
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    body:before {
+      right: -3rem;
+      top: 5rem;
+      width: min(36vw, 29rem);
+      height: min(46vw, 38rem);
+      background-image: url("./assets/flower-side.png");
+      background-position: top right;
+    }
+
+    body:after {
+      left: -2.8rem;
+      bottom: 3rem;
+      width: min(34vw, 28rem);
+      height: min(34vw, 28rem);
+      opacity: 0.13;
+      background-image: url("./assets/rose-large.png");
+      background-position: bottom left;
+    }
+
+    .page,
+    .nav,
+    .hero,
+    section,
+    .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav {
+      background:
+        linear-gradient(180deg, rgba(251, 245, 234, 0.94), rgba(251, 245, 234, 0.82));
+      border-bottom: 1px solid rgba(7, 93, 146, 0.20);
+      box-shadow: 0 10px 30px rgba(6, 74, 118, 0.06);
+    }
+
+    .brand-mark {
+      border-color: rgba(7, 93, 146, 0.45);
+      color: var(--blue);
+      background: rgba(255, 255, 255, 0.66);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 0.18rem 0;
+    }
+
+    .nav-links a:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.1rem;
+      height: 1px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 180ms ease;
+    }
+
+    .nav-links a:hover {
+      border-color: transparent;
+      color: var(--blue);
+    }
+
+    .nav-links a:hover:after {
+      transform: scaleX(1);
+    }
+
+    .hero {
+      background:
+        url("./assets/circle-line.png") right 8% top 13% / min(25vw, 18rem) auto no-repeat,
+        url("./assets/line-swish.png") left 8% bottom 12% / min(28vw, 22rem) auto no-repeat;
+    }
+
+    .hero:before {
+      inset: auto 3% 10% 42%;
+      height: 44%;
+      background:
+        linear-gradient(90deg, rgba(7, 93, 146, 0.08), rgba(195, 154, 88, 0.12), rgba(7, 93, 146, 0.05));
+      filter: blur(34px);
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      right: clamp(1rem, 5vw, 5rem);
+      bottom: clamp(1rem, 4vw, 3.5rem);
+      width: min(25vw, 15rem);
+      height: min(25vw, 15rem);
+      opacity: 0.18;
+      pointer-events: none;
+      background: url("./assets/rose-stem.png") center / contain no-repeat;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow:before {
+      background: var(--blue);
+    }
+
+    h1,
+    h2 {
+      color: #112d43;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+
+    h1 {
+      max-width: 880px;
+      font-size: clamp(2.65rem, 6.4vw, 5.9rem);
+    }
+
+    .hero-copy,
+    .section-lead {
+      color: #536577;
+    }
+
+    .btn,
+    .artifact-link {
+      position: relative;
+      overflow: hidden;
+      border-color: rgba(7, 93, 146, 0.24);
+      background: rgba(255, 255, 255, 0.58);
+      color: #12324a;
+      box-shadow: 0 10px 24px rgba(6, 74, 118, 0.08);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .btn:before,
+    .artifact-link:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.54) 46%, transparent 64%);
+      transform: translateX(-110%);
+      transition: transform 360ms ease;
+    }
+
+    .btn:hover,
+    .artifact-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(7, 93, 146, 0.48);
+      box-shadow: 0 16px 34px rgba(6, 74, 118, 0.14);
+    }
+
+    .btn:hover:before,
+    .artifact-link:hover:before {
+      transform: translateX(110%);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #064a76, #0a679a);
+      border-color: #064a76;
+      color: #fffaf0;
+    }
+
+    .hero-panel,
+    .tile,
+    .deliverable,
+    .flow-step,
+    .day,
+    .meta-item {
+      border-color: rgba(7, 93, 146, 0.20);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.64), rgba(251, 245, 234, 0.72));
+      box-shadow: 0 14px 34px rgba(6, 74, 118, 0.09);
+    }
+
+    .hero-panel {
+      padding: clamp(1.05rem, 2vw, 1.5rem);
+      border-width: 1px;
+    }
+
+    .hero-panel:before,
+    .hero-panel:after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      border: 1px solid rgba(7, 93, 146, 0.35);
+    }
+
+    .hero-panel:before {
+      inset: 0.45rem;
+      border-radius: 5px;
+    }
+
+    .hero-panel:after {
+      right: 1rem;
+      top: 1rem;
+      width: 4.2rem;
+      height: 4.2rem;
+      border-left: 0;
+      border-bottom: 0;
+      border-radius: 0 5px 0 0;
+    }
+
+    .preview-frame {
+      position: relative;
+      z-index: 1;
+      border-color: rgba(7, 93, 146, 0.18);
+      box-shadow: 0 18px 42px rgba(6, 74, 118, 0.16);
+    }
+
+    .meta-item strong {
+      color: var(--blue);
+    }
+
+    section {
+      background-image:
+        radial-gradient(circle at 7% 16%, rgba(255, 255, 255, 0.58), transparent 14rem);
+    }
+
+    .band {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(239, 226, 207, 0.38));
+      border-color: rgba(7, 93, 146, 0.16);
+    }
+
+    .section-head {
+      position: relative;
+    }
+
+    .section-head:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1.1rem;
+      width: min(28rem, 54vw);
+      height: 1.6rem;
+      opacity: 0.52;
+      background: url("./assets/line-swish.png") left center / contain no-repeat;
+    }
+
+    .tile,
+    .deliverable,
+    .flow-step,
+    .day {
+      position: relative;
+      overflow: hidden;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .tile:before,
+    .deliverable:before,
+    .flow-step:before,
+    .day:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), rgba(195, 154, 88, 0.55), transparent);
+    }
+
+    .tile:hover,
+    .deliverable:hover,
+    .flow-step:hover,
+    .day:hover {
+      transform: translateY(-3px);
+      border-color: rgba(7, 93, 146, 0.36);
+      box-shadow: 0 20px 42px rgba(6, 74, 118, 0.14);
+    }
+
+    .num {
+      border-color: rgba(7, 93, 146, 0.45);
+      color: var(--blue);
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    .flow-step:after {
+      border-color: var(--blue);
+    }
+
+    .day strong,
+    .deliverable .tag {
+      color: var(--blue);
+    }
+
+    .deliverable .tag {
+      background: rgba(7, 93, 146, 0.10);
+      border: 1px solid rgba(7, 93, 146, 0.18);
+    }
+
+    .quote {
+      background:
+        linear-gradient(135deg, rgba(6, 74, 118, 0.96), rgba(15, 70, 96, 0.93)),
+        url("./assets/circle-line.png") right 2rem center / 13rem auto no-repeat;
+      border-color: rgba(255, 250, 240, 0.24);
+      box-shadow: 0 24px 54px rgba(6, 74, 118, 0.22);
+    }
+
+    .footer {
+      background: rgba(251, 245, 234, 0.78);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        background:
+          url("./assets/circle-line.png") right 5% top 5% / 12rem auto no-repeat;
+      }
+
+      .hero:after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body:before,
+      body:after {
+        opacity: 0.08;
+      }
+
+      .section-head:after {
+        width: 70vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav" aria-label="页面导航">
+      <div class="brand"><span class="brand-mark">21</span><span>商业开窍课｜作品集案例</span></div>
+      <div class="nav-links">
+        <a href="#problem">问题</a>
+        <a href="#method">方法</a>
+        <a href="#system">系统</a>
+        <a href="#deliverables">成果</a>
+        <a href="#value">能力</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <div class="eyebrow">AI Product Case Study</div>
+        <h1>把155期访谈，产品化为21天商业开窍学习系统</h1>
+        <p class="hero-copy">
+          这不是一套人物访谈摘要，而是一次复杂知识资产产品化实践：从海量访谈材料出发，经过科学学习、关键假设、需求原点、产品内核和深度复盘的方法处理，最终交付课程总纲、讲课PPT、讲稿和学习行动表。
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#deliverables">查看交付成果</a>
+          <a class="btn" href="./files/teaching-deck.pptx">打开课程PPT</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="课程成果预览">
+        <img class="preview-frame" src="./assets/ppt-preview.png" alt="21天商业开窍课PPT抽样预览" />
+        <div class="meta-grid">
+          <div class="meta-item"><strong>155期</strong><span>原始访谈材料</span></div>
+          <div class="meta-item"><strong>21天</strong><span>学习板块重构</span></div>
+          <div class="meta-item"><strong>198页</strong><span>深度版展示PPT</span></div>
+          <div class="meta-item"><strong>4类</strong><span>课程交付成果</span></div>
+        </div>
+      </aside>
+    </header>
+
+    <section id="problem" class="band">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>真正的问题不是整理，而是转化</h2>
+          <p class="section-lead">如果只是把155期访谈做摘要，价值会停留在“知道他说过什么”。这个项目要解决的是：如何把复杂人物材料转化为普通年轻人能学习、能判断、能行动的能力系统。</p>
+        </div>
+        <div class="problem-grid">
+          <article class="tile">
+            <span class="num">1</span>
+            <h3>材料复杂</h3>
+            <p>访谈数量大、主题跨度大，同时人物本身带有高争议、高行动、高表达、高风险特征，不能用单一立场处理。</p>
+          </article>
+          <article class="tile">
+            <span class="num">2</span>
+            <h3>学习容易变浅</h3>
+            <p>只听观点很容易变成热闹和收藏，真正有价值的是从事实中抽象模型，再迁移到自己的处境。</p>
+          </article>
+          <article class="tile">
+            <span class="num">3</span>
+            <h3>交付必须可执行</h3>
+            <p>课程不能停留在PPT好看，而要让学习者每天留下具体输出，最终形成自己的商业开窍行动书。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>方法论骨架</h2>
+          <p class="section-lead">页面背后的产品设计，来自一堂课程体系中的几组核心方法：它们共同把“看材料”推进为“形成判断、产出资产、验证行动”。</p>
+        </div>
+        <div class="method-grid">
+          <article class="tile">
+            <span class="num">I</span>
+            <h3>IPO科学学习</h3>
+            <p>把学习拆成Input、Process、Output。真正重要的不是输入量，而是处理质量和输出质量。</p>
+          </article>
+          <article class="tile">
+            <span class="num">H</span>
+            <h3>关键假设</h3>
+            <p>把人生选择、职业判断和商业机会变成可验证命题，避免用情绪和口号替代判断。</p>
+          </article>
+          <article class="tile">
+            <span class="num">N</span>
+            <h3>需求原点</h3>
+            <p>不急着堆解决方案，先回到人群、场景、痛点和真实付费动机，找稳定需求。</p>
+          </article>
+          <article class="tile">
+            <span class="num">C</span>
+            <h3>产品内核</h3>
+            <p>课程也要有清晰内核：不是孙宇晨传记，而是复杂商业样本学习课。</p>
+          </article>
+          <article class="tile">
+            <span class="num">R</span>
+            <h3>深度复盘</h3>
+            <p>把做过的事情转化成能力资产，让每一次返工、修正和判断都进入下一轮迭代。</p>
+          </article>
+          <article class="tile">
+            <span class="num">G</span>
+            <h3>增长飞轮</h3>
+            <p>让课程内容、学习产出、行动表和作品集互相增强，形成可持续复用的个人资产系统。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="system" class="band">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>从原始材料到课程产品</h2>
+          <p class="section-lead">整个项目按产品化流程推进，而不是简单生成文件。每一步都回答一个问题：这一步如何让材料更接近真实可用的学习系统？</p>
+        </div>
+        <div class="flow">
+          <div class="flow-step"><small>01</small><strong>原始材料</strong><span>155期访谈与补充课程资料</span></div>
+          <div class="flow-step"><small>02</small><strong>学习定位</strong><span>复杂商业样本学习，而非人物摘要</span></div>
+          <div class="flow-step"><small>03</small><strong>课程总纲</strong><span>重组为21个能力训练板块</span></div>
+          <div class="flow-step"><small>04</small><strong>展示PPT</strong><span>让每一天能被上课讲清楚</span></div>
+          <div class="flow-step"><small>05</small><strong>讲课稿</strong><span>补充转场、案例和深度解释</span></div>
+          <div class="flow-step"><small>06</small><strong>行动表</strong><span>把学习落到真实动作与复盘</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>21天课程地图</h2>
+          <p class="section-lead">21天不是21个观点，而是从复杂样本学习、个人战略底盘、商业机会判断、能力资产化，到行动系统建立的递进路径。</p>
+        </div>
+        <div class="course-map">
+          <div class="day"><strong>Day 1</strong><span>如何学习一个高争议人物</span></div>
+          <div class="day"><strong>Day 2</strong><span>把访谈变成学习资产</span></div>
+          <div class="day"><strong>Day 3</strong><span>从默认人生程序中醒来</span></div>
+          <div class="day"><strong>Day 4</strong><span>财富自由是选择权</span></div>
+          <div class="day"><strong>Day 5</strong><span>个人战略</span></div>
+          <div class="day"><strong>Day 6</strong><span>价值观筛选器</span></div>
+          <div class="day"><strong>Day 7</strong><span>精神自由与个人主权</span></div>
+          <div class="day"><strong>Day 8</strong><span>机会窗口</span></div>
+          <div class="day"><strong>Day 9</strong><span>赛道判断</span></div>
+          <div class="day"><strong>Day 10</strong><span>投资自己</span></div>
+          <div class="day"><strong>Day 11</strong><span>杠杆</span></div>
+          <div class="day"><strong>Day 12</strong><span>风险边界</span></div>
+          <div class="day"><strong>Day 13</strong><span>原始积累</span></div>
+          <div class="day"><strong>Day 14</strong><span>组合优势</span></div>
+          <div class="day"><strong>Day 15</strong><span>表达与叙事</span></div>
+          <div class="day"><strong>Day 16</strong><span>社群与关系资产</span></div>
+          <div class="day"><strong>Day 17</strong><span>把自己当产品</span></div>
+          <div class="day"><strong>Day 18</strong><span>关键假设</span></div>
+          <div class="day"><strong>Day 19</strong><span>MVP</span></div>
+          <div class="day"><strong>Day 20</strong><span>反馈与复盘</span></div>
+          <div class="day"><strong>Day 21</strong><span>商业开窍行动书</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="deliverables" class="band">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>交付成果</h2>
+          <p class="section-lead">HTML负责展示项目逻辑，真正的深度交付物仍然保留为可打开、可使用、可继续迭代的文件。</p>
+        </div>
+        <div class="deliverables">
+          <article class="deliverable">
+            <span class="tag">DOCX</span>
+            <h3>课程总体大纲</h3>
+            <p>定义课程定位、价值最大化方法、21天结构和后续交付标准，是整个项目的产品骨架。</p>
+            <a class="artifact-link" href="./files/course-outline.docx">打开文件</a>
+          </article>
+          <article class="deliverable">
+            <span class="tag">PPTX</span>
+            <h3>深度版讲课PPT</h3>
+            <p>按21天课程地图生成的展示课件，负责课堂结构、关键判断和可视化表达。</p>
+            <a class="artifact-link" href="./files/teaching-deck.pptx">打开文件</a>
+          </article>
+          <article class="deliverable">
+            <span class="tag">DOCX</span>
+            <h3>配套讲课稿</h3>
+            <p>不是照念PPT，而是补充逻辑转场、案例解释、方法论迁移和课堂叙述。</p>
+            <a class="artifact-link" href="./files/teaching-script.docx">打开文件</a>
+          </article>
+          <article class="deliverable">
+            <span class="tag">XLSX</span>
+            <h3>黎凯迎个人行动表</h3>
+            <p>面向AI产品经理/FDE成长，把21天学习转成职业路线、作品集和能力资产。</p>
+            <a class="artifact-link" href="./files/kaiying-action-table.xlsx">打开文件</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="value">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>这个项目证明的能力</h2>
+          <p class="section-lead">对AI产品经理/FDE来说，最关键的不是会生成内容，而是能把复杂任务拆成系统、把混乱材料变成产品、把交付物变成可验证资产。</p>
+        </div>
+        <div class="skills-grid">
+          <article class="tile">
+            <span class="num">A</span>
+            <h3>复杂信息结构化</h3>
+            <p>把访谈、课程资料和个人场景重组为清晰的信息架构，降低理解成本。</p>
+          </article>
+          <article class="tile">
+            <span class="num">B</span>
+            <h3>AI辅助产品化</h3>
+            <p>不是让AI替代判断，而是用AI加速整理、抽象、生成和迭代。</p>
+          </article>
+          <article class="tile">
+            <span class="num">C</span>
+            <h3>课程产品设计</h3>
+            <p>从学习目标、课程地图、展示课件、讲课稿到行动表，形成完整教学闭环。</p>
+          </article>
+          <article class="tile">
+            <span class="num">D</span>
+            <h3>关键假设意识</h3>
+            <p>把职业选择、创业加入、商业化路径都转成可验证问题，而非空泛判断。</p>
+          </article>
+          <article class="tile">
+            <span class="num">E</span>
+            <h3>交付物意识</h3>
+            <p>每个阶段都有明确成果：大纲、PPT、讲稿、行动表、案例页。</p>
+          </article>
+          <article class="tile">
+            <span class="num">F</span>
+            <h3>复盘与迁移</h3>
+            <p>让一次项目沉淀成可迁移方法，未来可用于访谈分析、知识库、培训产品和Agent资料处理。</p>
+          </article>
+        </div>
+        <div style="height:2rem"></div>
+        <div class="quote">
+          <strong>不是做了一套课程，而是完成了一次复杂知识资产产品化。</strong>
+          <p>这个案例的核心价值，是展示一个AI产品经理如何从模糊需求出发，建立方法框架，组织内容系统，完成多形态交付，并把结果沉淀为可复用的个人作品集资产。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="section-inner">孙宇晨155期访谈：21天商业开窍课｜作品集案例页｜Generated as a product case portfolio artifact</div>
+    </footer>
+  </div>
+</body>
+</html>
+
